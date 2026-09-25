@@ -1,0 +1,66 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: HandballProspects – Följ spelarna\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: handballprospects\n"
+
+msgid "Follow the players – HandballProspects"
+msgstr "Följ spelarna – HandballProspects"
+
+msgid "HandballProspects is not configured: define HANDBALLPROSPECTS_TOKEN in wp-config.php."
+msgstr "HandballProspects är inte konfigurerat: definiera HANDBALLPROSPECTS_TOKEN i wp-config.php."
+
+msgid "Search player"
+msgstr "Sök spelare"
+
+msgid "Search player by name…"
+msgstr "Sök spelare på namn…"
+
+msgid "Shown as small cards at the end of the article. Each player also gets a tag with their name."
+msgstr "Visas som små kort sist i artikeln. Varje spelare får också en tagg med sitt namn."
+
+msgid "Searching…"
+msgstr "Söker…"
+
+msgid "No players found."
+msgstr "Inga spelare hittades."
+
+msgid "The search failed. Try again."
+msgstr "Sökningen misslyckades. Försök igen."
+
+msgid "The article already has the maximum number of players."
+msgstr "Artikeln har redan maxantalet spelare."
+
+msgid "Move up"
+msgstr "Flytta upp"
+
+msgid "Move down"
+msgstr "Flytta ned"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "No players selected."
+msgstr "Inga spelare valda."
+
+msgid "HandballProspects is not configured on this site."
+msgstr "HandballProspects är inte konfigurerat på den här sajten."
+
+msgid "HandballProspects could not be reached. Try again in a moment."
+msgstr "HandballProspects svarar inte. Försök igen om en stund."
+
+msgid "%d yrs"
+msgstr "%d år"
+
+msgid "b. %d"
+msgstr "f. %d"
+
+msgid "Follow the players"
+msgstr "Följ spelarna"
+
+msgid "on HandballProspects"
+msgstr "på HandballProspects"

@@ -1,0 +1,9 @@
+{
+	"core": "WordPress/WordPress#6.8",
+	"phpVersion": "8.3",
+	"plugins": [
+		".",
+		"https://downloads.wordpress.org/plugin/classic-editor.latest-stable.zip"
+	],
+	"testsEnvironment": false
+}

@@ -1,0 +1,24 @@
+/*
+ * "Följ spelarna": små kort med två rader, i en rad som swipas/scrollas i
+ * sidled i stället för att göra sidan lång. Typsnittet ärvs från temat.
+ */
+.hp-follow { margin: 2em 0 1em; }
+.hp-follow__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1em; margin-bottom: .6em; }
+.hp-follow__title { font-size: 1.05em; font-weight: 700; line-height: 1.3; }
+.hp-follow__source { font-size: .8em; opacity: .6; white-space: nowrap; }
+.hp-follow__list {
+	display: flex; gap: .6em; margin: 0; padding: 0 0 .4em; list-style: none;
+	overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+}
+.hp-follow__item { flex: 0 0 auto; margin: 0; padding: 0; scroll-snap-align: start; list-style: none; }
+.hp-follow__item::before { content: none; }
+.hp-card {
+	display: flex; flex-direction: column; justify-content: center; gap: .15em;
+	min-width: 11em; max-width: 16em; padding: .7em 1em;
+	border: 1px solid rgba(0, 0, 0, .12); border-radius: 12px; background: #fff;
+	color: inherit; text-decoration: none !important; line-height: 1.3;
+	transition: border-color .15s ease, box-shadow .15s ease;
+}
+.hp-card:hover, .hp-card:focus-visible { border-color: rgba(0, 0, 0, .3); box-shadow: 0 2px 8px rgba(0, 0, 0, .08); }
+.hp-card__name { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hp-card__meta { font-size: .85em; opacity: .7; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
