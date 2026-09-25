@@ -23,6 +23,7 @@ function untrailingslashit( string $value ): string {
 	return rtrim( $value, '/\\' );
 }
 
+require __DIR__ . '/../src/Settings.php';
 require __DIR__ . '/../src/Api.php';
 require __DIR__ . '/../src/Players.php';
 require __DIR__ . '/../src/Card.php';

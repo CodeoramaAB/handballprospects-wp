@@ -16,10 +16,15 @@ HP-sidan (partner-API:t `/api/v1`) bor i `handball-scraper`, se PRO-137.
 
 ## Konfiguration
 
-I `wp-config.php`:
+Inställningar → HandballProspects: klistra in sajtens token. Sidan testar anslutningen och visar "Ansluten", "känner inte igen token" eller "svarar inte".
+- En sparad token visas aldrig igen, bara de sista fyra tecknen.
+- Ett tomt fält behåller den sparade token, och kryssrutan tar bort den.
+- Utan token ser skribenterna ingen spelarruta. Administratörer ser i stället en påminnelse med länk till inställningssidan.
+
+Den som hellre vill ha token i `wp-config.php` kan lägga den där. Den vinner då över inställningssidan:
 
 ```php
-define( 'HANDBALLPROSPECTS_TOKEN', '…' );                                   // krävs, en per sajt
+define( 'HANDBALLPROSPECTS_TOKEN', '…' );
 define( 'HANDBALLPROSPECTS_API_URL', 'https://handballprospects.com/api/v1' ); // valfri
 ```
 
@@ -33,11 +38,7 @@ vendor/bin/phpunit                # enhetstester för den rena logiken
 npx @wordpress/env start          # WordPress 6.8 + Classic Editor på http://localhost:8888 (admin/password)
 ```
 
-Tokenet till den lokala miljön läggs i `.wp-env.override.json` (gitignorerad):
-
-```json
-{ "config": { "HANDBALLPROSPECTS_TOKEN": "…" } }
-```
+Token för den lokala miljön läggs in under Inställningar → HandballProspects (http://localhost:8888/wp-admin, admin/password).
 
 ## Release
 

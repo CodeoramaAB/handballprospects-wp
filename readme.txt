@@ -19,13 +19,13 @@ Cards are fetched from HandballProspects and cached for six hours, so a transfer
 == Installation ==
 
 1. Install and activate the plugin.
-2. Add the site's partner token to `wp-config.php`:
+2. Go to Settings → HandballProspects and paste the site's partner token. The page shows whether HandballProspects accepts it.
 
-    define( 'HANDBALLPROSPECTS_TOKEN', '…' );
+Until a token is saved, writers do not see the player box; administrators see a reminder with a link to the settings. The token can also be set in `wp-config.php` with `define( 'HANDBALLPROSPECTS_TOKEN', '…' );`, which takes precedence over the settings page.
 
 The token never leaves the server: the editor searches through the site's own REST route.
 
 == Changelog ==
 
 = 0.1.0 =
-* First version: player search in the Classic Editor, automatic tags and the "Follow the players" cards.
+* First version: player search in the Classic Editor, automatic tags, the "Follow the players" cards and a settings page for the token.

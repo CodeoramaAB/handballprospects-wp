@@ -13,9 +13,10 @@
  * Text Domain:       handballprospects
  * Domain Path:       /languages
  *
- * Konfiguration i wp-config.php:
- *   define( 'HANDBALLPROSPECTS_TOKEN', '…' );     // sajtens partnertoken, krävs
- *   define( 'HANDBALLPROSPECTS_API_URL', '…' );   // valfri, förval https://handballprospects.com/api/v1
+ * Sajtens partnertoken fylls i under Inställningar → HandballProspects.
+ * Valfritt i wp-config.php (vinner över inställningssidan):
+ *   define( 'HANDBALLPROSPECTS_TOKEN', '…' );
+ *   define( 'HANDBALLPROSPECTS_API_URL', '…' );   // förval https://handballprospects.com/api/v1
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -23,6 +24,7 @@ defined( 'ABSPATH' ) || exit;
 define( 'HANDBALLPROSPECTS_VERSION', '0.1.0' );
 define( 'HANDBALLPROSPECTS_FILE', __FILE__ );
 
+require_once __DIR__ . '/src/Settings.php';
 require_once __DIR__ . '/src/Api.php';
 require_once __DIR__ . '/src/Players.php';
 require_once __DIR__ . '/src/Card.php';
@@ -37,6 +39,7 @@ add_action(
 	}
 );
 
+Codeorama\HandballProspects\Settings::register();
 Codeorama\HandballProspects\Players::register();
 Codeorama\HandballProspects\Rest::register();
 Codeorama\HandballProspects\MetaBox::register();

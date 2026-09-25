@@ -24,7 +24,19 @@ final class MetaBox {
 		add_action( 'admin_enqueue_scripts', array( self::class, 'enqueue' ) );
 	}
 
+	/**
+	 * Utan token ser skribenten ingen ruta alls; den som kan ställa in
+	 * pluginet får i stället en varning med länk till inställningssidan.
+	 */
 	public static function add(): void {
+		if ( ! Settings::isConfigured() ) {
+			if ( current_user_can( 'manage_options' ) ) {
+				add_meta_box( 'handballprospects-players', __( 'Follow the players – HandballProspects', 'handballprospects' ), array( self::class, 'renderUnconfigured' ), 'post', 'normal', 'high' );
+			}
+
+			return;
+		}
+
 		add_meta_box(
 			'handballprospects-players',
 			__( 'Follow the players – HandballProspects', 'handballprospects' ),
@@ -39,9 +51,6 @@ final class MetaBox {
 		wp_nonce_field( self::FIELD, self::NONCE );
 		$players = Players::get( $post->ID );
 
-		if ( null === Api::fromConfig() ) {
-			echo '<p class="hp-box__notice">' . esc_html__( 'HandballProspects is not configured: define HANDBALLPROSPECTS_TOKEN in wp-config.php.', 'handballprospects' ) . '</p>';
-		}
 		?>
 		<div class="hp-box" data-hp-box>
 			<input type="hidden" name="<?php echo esc_attr( self::FIELD ); ?>" value="<?php echo esc_attr( (string) wp_json_encode( $players ) ); ?>" data-hp-field>
@@ -53,6 +62,15 @@ final class MetaBox {
 			<p class="description"><?php esc_html_e( 'Shown as small cards at the end of the article. Each player also gets a tag with their name.', 'handballprospects' ); ?></p>
 		</div>
 		<?php
+	}
+
+	public static function renderUnconfigured(): void {
+		printf(
+			'<p class="hp-box__notice">%s <a href="%s">%s</a></p>',
+			esc_html__( 'The player box needs the site\'s HandballProspects token. Writers do not see it until the token is saved.', 'handballprospects' ),
+			esc_url( Settings::url() ),
+			esc_html__( 'Add the token', 'handballprospects' )
+		);
 	}
 
 	public static function save( int $postId, WP_Post $post ): void {
@@ -76,7 +94,7 @@ final class MetaBox {
 	}
 
 	public static function enqueue( string $hook ): void {
-		if ( ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) || 'post' !== get_current_screen()?->post_type ) {
+		if ( ! Settings::isConfigured() || ! in_array( $hook, array( 'post.php', 'post-new.php' ), true ) || 'post' !== get_current_screen()?->post_type ) {
 			return;
 		}
 

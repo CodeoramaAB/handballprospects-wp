@@ -11,9 +11,6 @@ msgstr ""
 msgid "Follow the players – HandballProspects"
 msgstr "Följ spelarna – HandballProspects"
 
-msgid "HandballProspects is not configured: define HANDBALLPROSPECTS_TOKEN in wp-config.php."
-msgstr "HandballProspects är inte konfigurerat: definiera HANDBALLPROSPECTS_TOKEN i wp-config.php."
-
 msgid "Search player"
 msgstr "Sök spelare"
 
@@ -64,3 +61,45 @@ msgstr "Följ spelarna"
 
 msgid "on HandballProspects"
 msgstr "på HandballProspects"
+
+msgid "HandballProspects"
+msgstr "HandballProspects"
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "Link the players in your articles to their profiles on HandballProspects. The token identifies this site; you get it from HandballProspects."
+msgstr "Koppla spelarna i era artiklar till deras profiler på HandballProspects. Token identifierar den här sajten, och ni får den av HandballProspects."
+
+msgid "Token"
+msgstr "Token"
+
+msgid "Set in wp-config.php (HANDBALLPROSPECTS_TOKEN), which takes precedence over this page."
+msgstr "Satt i wp-config.php (HANDBALLPROSPECTS_TOKEN), som går före den här sidan."
+
+msgid "Paste the token here"
+msgstr "Klistra in token här"
+
+msgid "Saved (ends with %s) – leave empty to keep"
+msgstr "Sparad (slutar på %s) – lämna tomt för att behålla"
+
+msgid "Remove the saved token"
+msgstr "Ta bort den sparade token"
+
+msgid "No token yet: the player box is hidden in the editor until one is saved."
+msgstr "Ingen token än: spelarrutan syns inte i editorn förrän en token är sparad."
+
+msgid "Connected: HandballProspects accepts the token."
+msgstr "Ansluten: HandballProspects godkänner token."
+
+msgid "HandballProspects does not recognise the token. Check that it was pasted in full."
+msgstr "HandballProspects känner inte igen token. Kontrollera att hela token klistrades in."
+
+msgid "HandballProspects could not be reached. The cards show what was known when the players were picked until it answers again."
+msgstr "HandballProspects svarar inte. Korten visar det som var känt när spelarna valdes tills HandballProspects svarar igen."
+
+msgid "The player box needs the site's HandballProspects token. Writers do not see it until the token is saved."
+msgstr "Spelarrutan behöver sajtens token från HandballProspects. Skribenterna ser den inte förrän token är sparad."
+
+msgid "Add the token"
+msgstr "Lägg in token"

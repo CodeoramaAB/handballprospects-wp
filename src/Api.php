@@ -31,9 +31,9 @@ final class Api {
 		private ?string $lang,
 	) {}
 
-	/** Null när sajten saknar token — då är pluginet avstängt. */
+	/** Null när sajten saknar token (inställningssidan eller wp-config.php) — då är pluginet avstängt. */
 	public static function fromConfig(): ?self {
-		$token = defined( 'HANDBALLPROSPECTS_TOKEN' ) ? (string) HANDBALLPROSPECTS_TOKEN : '';
+		$token = Settings::token();
 		if ( '' === $token ) {
 			return null;
 		}
@@ -52,6 +52,16 @@ final class Api {
 		$prefix = strtolower( strtok( $locale, '_-' ) ?: '' );
 
 		return self::LANGUAGES[ $prefix ] ?? null;
+	}
+
+	/**
+	 * Tar HandballProspects emot token? Ett kortanrop för ett id som kanske
+	 * inte finns räcker: 200 betyder godkänd, 401 fel token.
+	 */
+	public function check(): bool|WP_Error {
+		$body = $this->get( '/players', array( 'ids' => '1' ) );
+
+		return is_wp_error( $body ) ? $body : true;
 	}
 
 	/**
