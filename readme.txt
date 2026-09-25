@@ -4,7 +4,7 @@ Tags: handball, sports, players
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,5 +27,8 @@ The token never leaves the server: the editor searches through the site's own RE
 
 == Changelog ==
 
+= 0.1.1 =
+* Settings page for the site token (Settings → HandballProspects) with a connection check; the player box stays hidden from writers until a token is saved.
+
 = 0.1.0 =
-* First version: player search in the Classic Editor, automatic tags, the "Follow the players" cards and a settings page for the token.
+* First version: player search in the Classic Editor, automatic tags and the "Follow the players" cards.
