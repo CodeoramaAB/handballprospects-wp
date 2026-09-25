@@ -3,7 +3,7 @@
  * Plugin Name:       HandballProspects – Följ spelarna
  * Plugin URI:        https://github.com/CodeoramaAB/handballprospects-wp
  * Description:       Koppla spelarna i en artikel till deras profiler på HandballProspects och visa dem som små kort under artikeln.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Requires at least: 6.5
  * Requires PHP:      8.1
  * Author:            Codeorama AB
@@ -21,7 +21,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'HANDBALLPROSPECTS_VERSION', '0.1.1' );
+define( 'HANDBALLPROSPECTS_VERSION', '0.1.2' );
 define( 'HANDBALLPROSPECTS_FILE', __FILE__ );
 
 require_once __DIR__ . '/src/Settings.php';

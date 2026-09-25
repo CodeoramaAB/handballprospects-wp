@@ -18,4 +18,21 @@ final class ApiTest extends TestCase {
 		$this->assertNull( Api::languageFor( 'fr_FR' ) );
 		$this->assertNull( Api::languageFor( '' ) );
 	}
+
+	public function test_a_profile_link_without_a_language_gets_the_sites(): void {
+		$this->assertSame(
+			'https://handballprospects.com/spelare/12?utm_source=gohandball&utm_medium=referral&lang=en',
+			Api::withLanguage( 'https://handballprospects.com/spelare/12?utm_source=gohandball&utm_medium=referral', 'en' )
+		);
+		$this->assertSame( 'https://handballprospects.com/spelare/12?lang=sv', Api::withLanguage( 'https://handballprospects.com/spelare/12', 'sv' ) );
+		$this->assertSame( 'https://handballprospects.com/spelare/12?lang=sv#karriar', Api::withLanguage( 'https://handballprospects.com/spelare/12#karriar', 'sv' ) );
+	}
+
+	public function test_a_link_that_already_carries_a_language_is_left_alone(): void {
+		$url = 'https://handballprospects.com/spelare/12?lang=en&utm_source=gohandball';
+
+		$this->assertSame( $url, Api::withLanguage( $url, 'sv' ) );
+		$this->assertSame( 'https://handballprospects.com/spelare/12', Api::withLanguage( 'https://handballprospects.com/spelare/12', null ) );
+		$this->assertSame( '', Api::withLanguage( '', 'sv' ) );
+	}
 }

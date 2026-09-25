@@ -108,11 +108,12 @@ final class Frontend {
 		$titleId = 'hp-follow-' . $postId;
 
 		$items = '';
+		$lang  = Api::languageFor( get_locale() );
 		foreach ( $players as $player ) {
 			$meta   = Card::metaLine( $player );
 			$items .= sprintf(
 				'<li class="hp-follow__item"><a class="hp-card" href="%s" target="_blank" rel="noopener"><span class="hp-card__name">%s</span>%s</a></li>',
-				esc_url( $player['url'] ),
+				esc_url( Api::withLanguage( $player['url'], $lang ) ),
 				esc_html( $player['name'] ),
 				'' === $meta ? '' : '<span class="hp-card__meta">' . esc_html( $meta ) . '</span>'
 			);

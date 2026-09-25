@@ -55,6 +55,28 @@ final class Api {
 	}
 
 	/**
+	 * Profillänken på sajtens språk. HP lägger själv `lang=` på länkarna,
+	 * men ögonblicksbilder sparade innan HP gjorde det saknar den — och
+	 * det är just dem som visas när HP inte svarar. En länk som redan bär
+	 * ett språk rörs inte.
+	 */
+	public static function withLanguage( string $url, ?string $lang ): string {
+		if ( null === $lang || '' === $url ) {
+			return $url;
+		}
+
+		parse_str( (string) parse_url( $url, PHP_URL_QUERY ), $query );
+		if ( isset( $query['lang'] ) ) {
+			return $url;
+		}
+
+		[ $base, $fragment ] = array_pad( explode( '#', $url, 2 ), 2, null );
+		$base               .= ( str_contains( $base, '?' ) ? '&' : '?' ) . 'lang=' . rawurlencode( $lang );
+
+		return null === $fragment ? $base : $base . '#' . $fragment;
+	}
+
+	/**
 	 * Tar HandballProspects emot token? Ett kortanrop för ett id som kanske
 	 * inte finns räcker: 200 betyder godkänd, 401 fel token.
 	 */
