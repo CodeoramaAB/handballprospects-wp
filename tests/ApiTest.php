@@ -19,20 +19,32 @@ final class ApiTest extends TestCase {
 		$this->assertNull( Api::languageFor( '' ) );
 	}
 
-	public function test_a_profile_link_without_a_language_gets_the_sites(): void {
+	public function test_an_old_profile_link_without_a_language_gets_the_sites(): void {
 		$this->assertSame(
 			'https://handballprospects.com/spelare/12?utm_source=gohandball&utm_medium=referral&lang=en',
 			Api::withLanguage( 'https://handballprospects.com/spelare/12?utm_source=gohandball&utm_medium=referral', 'en' )
 		);
-		$this->assertSame( 'https://handballprospects.com/spelare/12?lang=sv', Api::withLanguage( 'https://handballprospects.com/spelare/12', 'sv' ) );
-		$this->assertSame( 'https://handballprospects.com/spelare/12?lang=sv#karriar', Api::withLanguage( 'https://handballprospects.com/spelare/12#karriar', 'sv' ) );
+		$this->assertSame( 'https://handballprospects.com/spelare/12?lang=de#karriar', Api::withLanguage( 'https://handballprospects.com/spelare/12#karriar', 'de' ) );
+	}
+
+	public function test_a_link_with_the_language_in_the_path_is_left_alone(): void {
+		$url = 'https://handballprospects.com/en/spelare/12?utm_source=gohandball&utm_medium=referral&utm_campaign=follow_players';
+
+		$this->assertSame( $url, Api::withLanguage( $url, 'en' ) );
+		$this->assertSame( 'https://handballprospects.com/de/spelare/12', Api::withLanguage( 'https://handballprospects.com/de/spelare/12', 'en' ) );
+	}
+
+	public function test_a_swedish_site_leaves_the_unprefixed_link_alone(): void {
+		$url = 'https://handballprospects.com/spelare/12?utm_source=handbollskanalen&utm_medium=referral&utm_campaign=follow_players';
+
+		$this->assertSame( $url, Api::withLanguage( $url, 'sv' ) );
 	}
 
 	public function test_a_link_that_already_carries_a_language_is_left_alone(): void {
-		$url = 'https://handballprospects.com/spelare/12?lang=en&utm_source=gohandball';
+		$url = 'https://handballprospects.com/spelare/12?lang=sv&utm_source=handbollskanalen';
 
-		$this->assertSame( $url, Api::withLanguage( $url, 'sv' ) );
+		$this->assertSame( $url, Api::withLanguage( $url, 'en' ) );
 		$this->assertSame( 'https://handballprospects.com/spelare/12', Api::withLanguage( 'https://handballprospects.com/spelare/12', null ) );
-		$this->assertSame( '', Api::withLanguage( '', 'sv' ) );
+		$this->assertSame( '', Api::withLanguage( '', 'en' ) );
 	}
 }

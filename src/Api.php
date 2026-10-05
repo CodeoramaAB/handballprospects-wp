@@ -25,6 +25,9 @@ final class Api {
 		'no' => 'no',
 	);
 
+	/** HP:s källspråk, det enda som står utan prefix i adressen. */
+	private const SOURCE_LANGUAGE = 'sv';
+
 	public function __construct(
 		private string $baseUrl,
 		private string $token,
@@ -55,13 +58,20 @@ final class Api {
 	}
 
 	/**
-	 * Profillänken på sajtens språk. HP lägger själv `lang=` på länkarna,
-	 * men ögonblicksbilder sparade innan HP gjorde det saknar den — och
-	 * det är just dem som visas när HP inte svarar. En länk som redan bär
-	 * ett språk rörs inte.
+	 * Profillänken på sajtens språk. HP lägger själv språket i adressen
+	 * (`/en/spelare/12`; svenska står utan prefix), men ögonblicksbilder
+	 * sparade innan HP gjorde det saknar det — och det är just dem som
+	 * visas när HP inte svarar. En sådan länk får `lang=`, som HP 301:ar
+	 * till rätt prefix. En länk som redan bär ett språk rörs inte, och
+	 * inte heller en på svenska: en svensk länk utan prefix är redan rätt.
 	 */
 	public static function withLanguage( string $url, ?string $lang ): string {
-		if ( null === $lang || '' === $url ) {
+		if ( null === $lang || self::SOURCE_LANGUAGE === $lang || '' === $url ) {
+			return $url;
+		}
+
+		$segments = explode( '/', ltrim( (string) parse_url( $url, PHP_URL_PATH ), '/' ), 2 );
+		if ( in_array( $segments[0], self::LANGUAGES, true ) ) {
 			return $url;
 		}
 

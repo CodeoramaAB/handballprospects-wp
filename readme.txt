@@ -4,7 +4,7 @@ Tags: handball, sports, players
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.1.2
+Stable tag: 0.1.3
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,9 @@ Until a token is saved, writers do not see the player box; administrators see a 
 The token never leaves the server: the editor searches through the site's own REST route.
 
 == Changelog ==
+
+= 0.1.3 =
+* Profile links follow HandballProspects' new language addresses (`/en/spelare/12`): no extra `lang=` and no redirect on links that already carry their language. Cards saved before still get the site's language.
 
 = 0.1.2 =
 * Profile links always open in the site's language (`lang=`), also for cards saved before HandballProspects added the language itself.
